@@ -72,7 +72,7 @@ if __name__ == '__main__':
     t = time.time()
     authers = {}
     for p in range(1, 20):
-        url = 'https://www.pixiv.net/ajax/search/artworks/%E6%9D%B1%E6%96%B9Project10000users%E5%85%A5%E3%82%8A?word=%E6%9D%B1%E6%96%B9Project10000users%E5%85%A5%E3%82%8A' \
+        url = 'https://www.pixiv.net/ajax/search/artworks/東方Project100000users入り?word=東方Project100000users入り' \
           '&order=date_d&mode=r18&p={page}&s_mode=s_tag&type=all'.format(page=p)
         proxies = get_proxies()
         res = requests.get(url, proxies=proxies, headers=get_headers())
