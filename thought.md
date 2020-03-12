@@ -8,9 +8,10 @@
 ```eg: crawl_by_author authorID [nums]```
 
 ## 新的路线
-主要是搜索信息，比如前1000作者分布
-python爬出json再用matlab可视化？python直接可视化？
+python爬出json再直接可视化
 
 通过tag爬取到某tag下所有作品的信息，储存到json里
 
 做成直方图(x:作者 y:作品数)
+
+tkinter配合matplotlib
