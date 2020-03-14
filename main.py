@@ -2,6 +2,8 @@ import requests, os, re
 from config_reader import *
 import json
 import mat
+import time
+
 
 class Author():
     def __init__(self, id=None, name=None):
@@ -78,6 +80,7 @@ class Pixiv():
             fw.close()
 
     def get_tag_rank(self, tag, mode):
+        begin_time = time.time()
         page = 1
         count = 0   #画数
         authors = {}    #作者id对应其作品数目
@@ -85,8 +88,6 @@ class Pixiv():
             url = 'https://www.pixiv.net/ajax/search/artworks/{tag}?word={tag}' \
               '&order=date_d&mode={mode}&p={page}&s_mode=s_tag&type=all'.format(page=str(page), tag=tag, mode=mode)
             print('page={p}'.format(p=str(page)))
-
-
             res = requests.get(url, proxies=get_proxies(), headers=get_headers())
             with open('test.json', 'wb') as fw:
                 fw.write(res.content)
@@ -115,6 +116,8 @@ class Pixiv():
                     count += 1
             page += 1
         print(count)
+        print('use times:', time.time()-begin_time)
+
         d = {}
         for x in [x for x in authors.keys() if authors[x] > 5]:
             d[x] = authors[x]
@@ -125,4 +128,5 @@ class Pixiv():
 
 if __name__ == '__main__':
     px = Pixiv()
+
     px.get_tag_rank(tag='東方Project10000users入り', mode='safe')
